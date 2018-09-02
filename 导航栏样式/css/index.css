@@ -1,0 +1,51 @@
+
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+@font-face {
+    font-family: 'PoiretOne';
+    src: url('../font/PoiretOne-Regular.eot');
+    src: url('../font/PoiretOne-Regular.eot?#iefix') format('embedded-opentype'),
+            url('../font/PoiretOne-Regular.woff') format('woff'),
+            url('../font/PoiretOne-Regular.ttf') format('truetype'),
+            url('../font/PoiretOne-Regular.svg#fontname') format('svg');
+}
+
+.nav {
+    width: 749px;
+    margin: 100px auto 0px;
+}
+
+.nav ul {
+    width: 749px;
+    height: 20px;
+    padding: 10px 0px;
+    background-color: rgba(145, 152, 159, 1);
+    font-size: 0px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 10px 0px rgba(55, 60, 56, 1);
+}
+
+.nav ul li {
+    display: inline-block;
+    list-style: none;
+    width: 149px;
+    height: 20px;
+    border-left: 1px dashed rgba(0, 0, 0, 1);
+    text-align: center;
+    line-height: 20px;
+    font-family: 'PoiretOne';
+    font-size: 16px;
+    font-weight: bolder;
+    color: rgba(252, 250, 242, 1);
+    cursor: pointer;
+    text-shadow: 0px 6px 10px rgba(55, 60, 56, 1);
+}
+
+.nav ul li:nth-child(1) {
+    border: none;
+}

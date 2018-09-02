@@ -1,0 +1,132 @@
+
+* {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+.wrapper {
+    width: 700px;
+    height: 500px;
+    border: 1px solid #000;
+    margin: 50px auto 0px;
+}
+
+.wrapper ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.wrapper ul li {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 15px;
+    /* 因为.item进行单独的旋转，所以要给他的父级设置景深 */
+    perspective: 300px;
+    border: 1px solid #000;
+}
+
+.wrapper ul li .item,
+.wrapper ul li .item .front,
+.wrapper ul li .item .side {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.wrapper ul li .item .front img,
+.wrapper ul li .item .side img {
+    width: 100%;
+    height: 100%;
+}
+
+.wrapper ul li .item {
+    transform-style: preserve-3d;
+    transform-origin: 50% 50% -100px;
+    animation: 0.5s linear forwards;
+}
+
+/* .wrapper ul li .item .front { opacity: 0.5; } */
+
+.wrapper ul li .item .side { transform: translate3d(0, 0, -1px); }
+
+/* 一共定义8中状态，从上下左右四个方向出/入，每种状态对应人物图片的位置应该是在哪里这里给出定义 */
+.wrapper ul .top-in .item .side,
+.wrapper ul .top-out .item .side {
+    transform-origin: bottom;
+    transform: translate3d(0, -100%, 0) rotate3d(1, 0, 0, 90deg);
+}
+
+.wrapper ul .right-in .item .side,
+.wrapper ul .right-out .item .side {
+    transform-origin: left;
+    transform: translate3d(100%, 0, 0) rotate3d(0, 1, 0, 90deg);
+}
+
+.wrapper ul .bottom-in .item .side,
+.wrapper ul .bottom-out .item .side {
+    transform-origin: top;
+    transform: translate3d(0, 100%, 0) rotate3d(1, 0, 0, -90deg);
+}
+
+.wrapper ul .left-in .item .side,
+.wrapper ul .left-out .item .side {
+    transform-origin: right;
+    transform: translate3d(-100%, 0, 0) rotate3d(0, 1, 0, -90deg);
+}
+
+/* 没种状态执行的动画 */
+@keyframes top-in {
+    from { transform: rotate3d(0, 0, 0, 0); }
+    to { transform: rotate3d(1, 0, 0, -90deg); }
+}
+@keyframes top-out {
+    from { transform: rotate3d(1, 0, 0, -90deg); }
+    to {  transform: rotate3d(0, 0, 0, 0); }
+}
+
+@keyframes right-in {
+    from { transform: rotate3d(0, 0, 0, 0); }
+    to { transform: rotate3d(0, 1, 0, -90deg); }
+}
+@keyframes right-out {
+    from { transform: rotate3d(0, 1, 0, -90deg); }
+    to { transform: rotate3d(0, 0, 0, 0); }
+}
+
+@keyframes bottom-in {
+    from { transform: rotate3d(0, 0, 0, 0); }
+    to { transform: rotate3d(1, 0, 0, 90deg); }
+}
+@keyframes bottom-out {
+    from { transform: rotate3d(1, 0, 0, 90deg); }
+    to { transform: rotate3d(0, 0, 0, 0); }
+}
+
+@keyframes left-in {
+    from { transform: rotate3d(0, 0, 0, 0); }
+    to { transform: rotate3d(0, 1, 0, 90deg); }
+}
+@keyframes left-out {
+    from { transform: rotate3d(0, 1, 0, 90deg); }
+    to { transform: rotate3d(0, 0, 0, 0); }
+}
+
+.wrapper ul .top-in .item { animation-name: top-in; }
+.wrapper ul .top-out .item { animation-name: top-out; }
+
+.wrapper ul .right-in .item { animation-name: right-in; }
+.wrapper ul .right-out .item { animation-name: right-out; }
+
+.wrapper ul .bottom-in .item { animation-name: bottom-in; }
+.wrapper ul .bottom-out .item { animation-name: bottom-out; }
+
+.wrapper ul .left-in .item { animation-name: left-in; }
+.wrapper ul .left-out .item { animation-name: left-out; }

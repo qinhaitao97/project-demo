@@ -1,0 +1,96 @@
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.main {
+    width: 600px;
+    margin: 0px auto;
+}
+
+.main .top {
+    width: 100%;
+    height: 40px;
+    padding: 10px 0px;
+}
+
+.main .top .search {
+    display: inline-block;
+    vertical-align: middle;
+    width: 300px;
+    height: 40px;
+    margin-left: 20px;
+}
+
+.main .top .search input {
+    width: 298px;
+    height: 38px;
+    border: none;
+    border: 1px solid black;
+    border-radius: 10px;
+    outline: none;
+    font-size: 19px;
+}
+
+.main .top .navi {
+    display: inline-block;
+    vertical-align: middle;
+    width: 250px;
+    height: 30px;
+    margin-left: 10px;
+    padding: 5px 0px;
+}
+
+.main .top .navi .type li {
+    display: inline-block;
+    list-style: none;
+    width: 60px;
+    height: 28px;
+    margin-left: 15px;
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 28px;
+    cursor: pointer;
+}
+
+.main .top .navi .type .active {
+    border-color: orange;
+}
+
+.main .bottom .show {
+    width: 298px;
+    margin-left: 20px;
+    border-radius: 5px;
+}
+
+.main .bottom .info li {
+    width: 100%;
+    height:30px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 10px auto;
+    padding: 5px 0px;
+    list-style: none;
+}
+
+.main .bottom .info li img {
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+    vertical-align: middle;
+}
+
+.main .bottom .info li span {
+    display: inline-block;
+    width: 80px;
+    height: 28px;
+    border: 1px solid black;
+    margin-left: 18px;
+    border-radius: 5px;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 28px;
+}

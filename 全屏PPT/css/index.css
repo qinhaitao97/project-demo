@@ -1,0 +1,178 @@
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html, body, .wrapper, .page, .show-page {
+    width: 100%;
+    height: 100%;
+}
+
+.wrapper {
+    position: relative;
+}
+
+.wrapper .page {
+    position: relative;
+    overflow: hidden;
+}
+
+.wrapper .page .show-page li {
+    display: none;
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    background-size: cover;
+}
+
+.wrapper .page .show-page li:nth-child(1) {
+    display: block;
+    background-image: url(../img/1.jpg);
+}
+
+.wrapper .page .show-page li:nth-child(2) {
+    background-image: url(../img/2.jpg);
+}
+
+.wrapper .page .show-page li:nth-child(3) {
+    background-image: url(../img/3.jpg);
+}
+
+.show-page li:nth-child(4) {
+    background-image: url(../img/4.jpg);
+}
+
+.wrapper .page .info {
+    position: absolute;
+    left: 2%;
+    top: 60%;
+    width: 20%;
+    height: 35%;
+    border: 1px solid black;
+}
+
+.wrapper .page .info .title {
+    display: block;
+    width: 100%;
+    height: 25%;
+    font-family: Arial;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.wrapper .page .info .desc {
+    display: block;
+    width: 100%;
+    height: 75%;
+    overflow: hidden;
+}
+
+.wrapper .page .pic {
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    width: 25%;
+    height: 40%;
+}
+
+.wrapper .page .pic ul {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.wrapper .page .pic ul li {
+    list-style: none;
+    display: none;
+    width: 100%;
+    height: 100%;
+    text-indent: -999em;
+}
+
+.wrapper .page .pic ul li:nth-child(1) {
+    background-image: url(../img/5.jpg);
+    background-size: cover;
+    display: block;
+}
+
+.wrapper .page .pic ul li:nth-child(2) {
+    background-image: url(../img/6.jpg);
+    background-size: cover;
+}
+
+.wrapper .page .pic ul li:nth-child(3) {
+    background-image: url(../img/7.jpg);
+    background-size: cover;
+}
+
+.wrapper .page .pic ul li:nth-child(4) {
+    background-image: url(../img/8.jpg);
+    background-size: cover;
+}
+
+.wrapper .btn {
+    width: 100%;
+    height: 8%;
+    position: absolute;
+    left: 0px;
+    top: 46%;
+    /* background-color: red; */
+}
+
+.wrapper .btn .left-btn, .right-btn {
+    display: block;
+    width: 3%;
+    height: 100%;
+    background-color: gray;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.wrapper .btn .left-btn {
+    float: left;
+}
+
+.wrapper .btn .right-btn {
+    float: right;
+}
+
+.wrapper .btn::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.wrapper .index {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    margin-left: -70px;
+    width: 140px;
+    height: 20px;
+}
+
+.wrapper .index ul {
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+    border-radius: 20px;
+    opacity: 0.7;
+}
+
+.wrapper .index ul li {
+    display: inline-block;
+    list-style: none;
+    width: 15%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 50%;
+    margin-left: 8%;
+    text-indent: -999em;
+    cursor: pointer;
+}
+
+.wrapper .index ul .active {
+    background-color: #000;
+}
