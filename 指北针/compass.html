@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>指北针</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+
+        :root,
+        body {
+            width: 100%;
+            height: 100%;
+            background-color: #333;
+        }
+
+        .wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+        }
+
+        .wrapper .base-pin {
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            width: 3px;
+            height: 40px;
+        }
+        .wrapper .base-pin span {
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+        }
+
+        .wrapper .turntable {
+            width: 100%;
+            height: 100%;
+        }
+
+        .wrapper .turntable ul {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s linear;
+        }
+
+        .wrapper .turntable ul .item {
+            position: absolute;
+            top: 0px;
+            left: 50%;
+            width: 40px;
+            font-size: 0;
+            transform-origin: 20px 179px;
+        }
+
+        .wrapper .turntable ul .item .num {
+            display: block;
+            width: 100%;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .wrapper .turntable ul .item .pin {
+            position: absolute;
+            top: 33px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            display: block;
+            width: 3px;
+            height: 25px;
+            background-color: red;
+        }
+
+        .wrapper .line {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -100px;
+            margin-top: -100px;
+            width: 200px;
+            height: 200px;
+        }
+        .wrapper .line .across, .parallel {
+            display: block;
+            margin-top: 98px;
+            width: 100%;
+            height: 4px;
+            background-color: #fff;
+        }
+        .wrapper .line .parallel {
+            margin-top: -4px;
+            transform: rotate(90deg);
+        }
+        .wrapper .text {
+            position: absolute;
+            top: 0px;
+            left: 50%;
+            transform: translate(-50%, 360px);
+            width: 200px;
+            height: 30px;
+        }
+        .wrapper .text .direction {
+            display: block;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            line-height: 30px;
+            font-size: 20px;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <div class="base-pin">
+            <span></span>
+        </div>
+
+        <div class="turntable">
+            <ul class="container">
+                <li class="item">
+                    <span class="num">0</span>
+                    <span class="pin"></span>
+                </li>
+                <li class="item">
+                    <span class="num">330</span>
+                    <span class="pin"></span>
+                </li>
+                <li class="item">
+                    <span class="num">300</span>
+                    <span class="pin"></span>
+                </li>
+                <li class="item">
+                    <span class="num">270</span>
+                    <span class="pin"></span>
+                </li>
+                <li class="item">
+                    <span class="num">240</span>
+                    <span class="pin"></span>
+                </li>
+                <li class="item">
+                    <span class="num">210</span>
+                    <span class="pin"></span>
+                </li>
+                <li class="item">
+                    <span class="num">180</span>
+                    <span class="pin"></span>
+                </li>
+                <li class="item">
+                    <span class="num">150</span>
+                    <span class="pin"></span>
+                </li>
+                <li class="item">
+                    <span class="num">120</span>
+                    <span class="pin"></span>
+                </li>
+                <li class="item">
+                    <span class="num">90</span>
+                    <span class="pin"></span>
+                </li>
+                <li class="item">
+                    <span class="num">60</span>
+                    <span class="pin"></span>
+                </li>
+                <li class="item">
+                    <span class="num">30</span>
+                    <span class="pin"></span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="line">
+            <span class="across"></span>
+            <span class="parallel"></span>
+        </div>
+
+        <div class="text">
+            <span class="direction">东北35度</span>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+
+            if (window.DeviceOrientationEvent) {
+                // 绘制罗盘，将指针旋转至合适的角度
+                drawTurntable();
+                // 监听设别方向变化
+                window.addEventListener('deviceorientation', getAngle, false);
+            } else {
+                window.alert('你的设备不支持deviceorientation');
+            }
+            
+            // 绘制罗盘
+            function drawTurntable() {
+                var item = document.getElementsByClassName('item'),
+                    len = item.length;
+
+                for (var i = 0; i < len; i++) {
+                    item[i].style.transform = 'translate(-50%, -29px) rotate(' + i * 30 + 'deg)';
+                }
+            }
+            
+            // 根据设备旋转的角度旋转罗盘
+            function rotateTurntable(angle) {
+                var container = document.getElementsByClassName('container')[0];
+                container.style.transform = 'rotate(' + angle + 'deg)';
+            }
+
+            // 将描述方向的文本填入dom结构
+            function addDirec(text) {
+                var direction = document.getElementsByClassName('direction')[0];
+                direction.innerText = text;
+            }
+
+            // 获取设备旋转角
+            function getAngle(e) {
+                var angle = e.alpha;
+                if (angle != null) {
+                    // 计算旋转角哦所对应的方向
+                    var direc = Math.round(Math.round(angle / 45) + 7) % 8;
+                    var direcText = ['东南', '东', '东北', '北', '西北', '西', '西南', '南'];
+                    
+                    rotateTurntable(angle - 180);
+                    addDirec(direcText[direc]);
+                } else {
+                    window.alert('你的设备不支持deviceorientation');
+                }
+            }
+
+        })();
+    </script>
+</body>
+
+</html>

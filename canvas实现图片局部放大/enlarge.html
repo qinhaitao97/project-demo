@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>图片放大</title>
+</head>
+
+<body>
+    <!-- 原图区域，原图中的一部分要被拿到放大显示区放大显示 -->
+    <canvas id="my-canvas" width="500" height="300">Do not support canvas.</canvas>
+    <!-- 放大显示区，将原图中哪来的一部分放大显示 -->
+    <canvas id="large-canvas" width="300" height="300">Do not support canvas.</canvas>
+    <script type="text/javascript">
+        var myCanvas = document.getElementById('my-canvas'),
+            largeCanvas = document.getElementById('large-canvas');
+
+        if (myCanvas.getContext) {
+            var ctx = myCanvas.getContext('2d'),
+                ctx1 = largeCanvas.getContext('2d'),
+                canvasWidth = myCanvas.width,
+                canvasHeight = myCanvas.height,
+                largeCanvasWidth = largeCanvas.width,
+                largeCanvasHeight = largeCanvas.height,
+                oImg = new Image();
+
+            oImg.src = './xiaohei.png';
+            oImg.onload = function () {
+                ctx.beginPath();
+                // 在原图区域绘制原图
+                ctx.drawImage(oImg, 0, 0);
+            }
+
+            // 当鼠标在原图上移动时
+            myCanvas.onmousemove = function (event) {
+                var e = event || window.event,
+                    target = e.target || e.srcElement,
+                    x = e.clientX,
+                    y = e.clientY,
+                    w = 100,
+                    h = 100;
+
+                // 控制别放大的区域不能脱离原图（即不能超出原图的范围）
+                // x, y代表鼠标在原图区域内移动时的坐标，sx，sy是经过计算后要被放大显示的区域的宽高
+                if (x - w / 2 < 0) {
+                    sx = 0;
+                } else if (x + w / 2 > canvasWidth) {
+                    sx = canvasWidth - w;
+                } else {
+                    sx = x - w / 2;
+                }
+                if (y - h / 2 < 0) {
+                    sy = 0;
+                } else if (y + h / 2 > canvasHeight) {
+                    sy = canvasHeight - h;
+                } else {
+                    sy = y - h / 2;
+                }
+
+                // 四个参数，要放大区域的起点坐标以及宽高
+                enlarge(sx, sy, w, h);            
+            }
+
+            function enlarge(sx, sy, w, h) {
+                ctx1.beginPath();
+                // 反锯齿默认是启用的，可以关闭它来看到像素的效果，不过一般都不关闭，关闭后就能看到一个个像素组成的图形
+                // ctx1.imageSmoothingEnabled = false;
+
+                // 将要被放大的区域拿到放大显示区域中放大显示，具体放的的程度取决于放大显示区的宽高
+                ctx1.drawImage(myCanvas, sx, sy, w, h, 0, 0, largeCanvasWidth, largeCanvasHeight);
+            }
+        }
+    </script>
+</body>
+
+</html>
